@@ -8,22 +8,24 @@ class Game:
         os.system('cls' if os.name == 'nt' else 'clear')
 
     def start(self):
-        number = random.randint(1, 100)
+        try:
+            number = random.randint(1, 100)
+            
+            while True:
+                guess = int(input('Pick a number between 1-100: '))
 
-        guess = int(input('Pick a number between 1-100: '))
+                if guess < number:
+                    print('Your choice is lower than the number!')
+                
+                elif guess > number:
+                    print('Your choice is higher than the number!')
 
-        if type(guess) != int:
-            print('Invalid choice')
-            self.end()
-
-        if guess < number:
-            print('Your choice is lower than the number!')
-        
-        if guess > number:
-            print('Your choice is higher than the number!')
-
-        if guess == number:
-            print(f'You won! The number was {number}.')
+                elif guess == number:
+                    print(f'You won! The number was {number}.')
+                    break
+        except Exception:
+            print('An error occurred')
+        finally:
             self.end()
 
 game = Game()
